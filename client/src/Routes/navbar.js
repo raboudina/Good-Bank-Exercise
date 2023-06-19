@@ -34,13 +34,13 @@ function NavBar() {
         <Nav variant="pills">          
           <Nav.Link href="#/deposit/">Deposit</Nav.Link>
           <Nav.Link href="#/withdraw/">Withdraw</Nav.Link>
-          <Nav.Link href="#/alldata/">AllData</Nav.Link>
+          {/* <Nav.Link href="#/alldata/">AllData</Nav.Link> */}
           <Nav.Link href="#/logout/">Logout</Nav.Link>
         </Nav>
       </Navbar.Collapse>
       <Navbar.Collapse className="justify-content-end">
         <Nav variant="pill">
-        <Navbar.Text>Signed in as: {name} </Navbar.Text>
+        <Navbar.Text style={{color:"white"}}>Signed in as: {name}   </Navbar.Text>
         </Nav>
       </Navbar.Collapse>
     </Navbar>
@@ -66,9 +66,7 @@ function NoAuthNavBar() {
           <Nav.Link href="#/login/" className="justify-content-end">
             Login
           </Nav.Link>
-          <Nav className="me-auto">
-            <Nav.Link href="#/alldata/">AllData</Nav.Link>
-          </Nav>
+          {/* <Nav.Link href="#/alldata/">AllData</Nav.Link> */}
         </Nav>
       </Navbar.Collapse>
     </Navbar>

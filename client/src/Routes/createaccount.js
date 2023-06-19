@@ -30,7 +30,7 @@ function CreateAccount() {
 
   //Checks if all fields are empty to disable the Create Account button
   function emptyFields() {
-    if (name || email || password) return false;
+    if (name && email && balance && password) return false;
     return true;
   }
 
@@ -264,9 +264,12 @@ function CreateAccount() {
         ) : (
           <Form>
             <Card.Text>Account created successfully!</Card.Text>
-            <Button type="submit" variant="light" onClick={clearForm}>
+            {/* <Button type="submit" variant="light" onClick={clearForm}>
               Create another account
-            </Button>
+            </Button> */}
+            <Card.Link href="#/" >Home</Card.Link><br/>
+           <Card.Link href="#/Deposit/" >Make a deposit to your account</Card.Link><br/>
+           <Card.Link href="#/Withdraw/" >Withdraw money from your account</Card.Link>
           </Form>
         )}
       </Card.Body>

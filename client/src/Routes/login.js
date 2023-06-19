@@ -18,7 +18,7 @@ function Login(){
   const [ password, setPassword] = useState("");
 
   function emptyFields() {
-    if (email || password) return false;
+    if (email && password) return false;
     return true;
   };
 

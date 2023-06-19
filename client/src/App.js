@@ -8,17 +8,15 @@ import CreateAccount from "./Routes/createaccount";
 import Withdraw from "./Routes/withdraw";
 import Home from "./Routes/home";
 import { Route, Routes, HashRouter } from "react-router-dom";
-//import { userContext } from "./userContext";
 import { useContext } from "react";
-import { UserContext } from "./context";
-import {Context} from "./context";
+import { UserContext } from "./context"
 
 
 
 function App() {
    const currentUser = useContext(UserContext);
    const {loggedIn} = currentUser;
-  //const currentUser = currentUserContext();
+ 
   return (
     <HashRouter>      
       {loggedIn?<NavBar />:<NoAuthNavBar/>}          
