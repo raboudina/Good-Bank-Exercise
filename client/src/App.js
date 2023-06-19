@@ -11,8 +11,6 @@ import { Route, Routes, HashRouter } from "react-router-dom";
 import { useContext } from "react";
 import { UserContext } from "./context"
 
-
-
 function App() {
    const currentUser = useContext(UserContext);
    const {loggedIn} = currentUser;
