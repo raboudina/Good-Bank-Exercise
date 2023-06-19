@@ -46,16 +46,16 @@ function CreateAccount() {
   async function createUser(name, email, password, balance) {
     var res = await axios.get(
       apiUrl + name + "/" + email + "/" + password + "/" + balance
-    );    
-   return res;
+    );
+    return res;
   }
   //Function addAccount adds to account to the list of allUsers and set the current user to the new created account
-  function setCurrentUser(user){
-    console.log (user);
+  function setCurrentUser(user) {
+    console.log(user);
     currentUser.setLoggedIn(true);
     currentUser.setName(user.name);
     currentUser.setEmail(user.email);
-    currentUser.setBalance(user.balance);    
+    currentUser.setBalance(user.balance);
   }
 
   //Function capitalizeName turns a text into proper noun capitalized form
@@ -70,7 +70,6 @@ function CreateAccount() {
   }
 
   //Function isValidEmail is called to check if email value is in proper email format
-
   function isValidName() {
     if (!name) {
       errorMessage = error["name"];
@@ -129,50 +128,43 @@ function CreateAccount() {
   function handleCreate() {
     //Set the first to false indicating that it is no longer the user's first attempt to submit the form
     setFrist(false);
-
     //validate name field
     if (!isValidName()) {
       alert(errorMessage);
       return;
     }
-
     //validate email field
     if (!isValidEmail()) {
       alert(errorMessage);
       return;
     }
-
     //validate balance field
     if (!isValidBalance()) {
       alert(errorMessage);
       return;
     }
-
     //validate password field
     if (!isValidPassword()) {
       alert(errorMessage);
       return;
     }
-
     //Format name in proper nound capitalized form
     const capName = capitalizeName(name);
-
+    const lowerCaseEmail = email.toLocaleLowerCase();
     //Add new account
-    let res = createUser(capName, email, password, balance);
-
-      res.then((resolve)=> {
+    let res = createUser(capName, lowerCaseEmail, password, balance);
+    res.then((resolve) => {
       console.log(resolve.data);
-      if (resolve.data=='User exists') alert("User already exists!")
+      if (resolve.data == "User exists") alert("User already exists!");
       else {
         setCurrentUser(resolve.data);
         //Hide form fields and display success message
         setShow(false);
       }
-      })
+    });
   }
 
   return (
-    // <currentUserContext.Provider value={currentUser}>
     <Card className="primary">
       <Card.Header>Create Account</Card.Header>
       <Card.Body>
@@ -194,7 +186,6 @@ function CreateAccount() {
               </Form.Text>
             )}
             <br />
-
             <Form.Label>Email address</Form.Label>
             <Form.Control
               type="email"
@@ -211,7 +202,6 @@ function CreateAccount() {
               </Form.Text>
             )}
             <br />
-
             <Form.Label>Starting balance</Form.Label>
             <InputGroup>
               <InputGroup.Text>$</InputGroup.Text>
@@ -232,7 +222,6 @@ function CreateAccount() {
               </Form.Text>
             )}
             <br />
-
             <Form.Label>Password</Form.Label>
             <Form.Control
               type="password"
@@ -258,23 +247,26 @@ function CreateAccount() {
               }}
             >
               Create Account
-            </Button><br/>
+            </Button>
+            <br />
             <a href="#/Login/">Login to an existing account</a>
           </Form>
         ) : (
           <Form>
             <Card.Text>Account created successfully!</Card.Text>
-            {/* <Button type="submit" variant="light" onClick={clearForm}>
-              Create another account
-            </Button> */}
-            <Card.Link href="#/" >Home</Card.Link><br/>
-           <Card.Link href="#/Deposit/" >Make a deposit to your account</Card.Link><br/>
-           <Card.Link href="#/Withdraw/" >Withdraw money from your account</Card.Link>
+            <Card.Link href="#/">Home</Card.Link>
+            <br />
+            <Card.Link href="#/Deposit/">
+              Make a deposit to your account
+            </Card.Link>
+            <br />
+            <Card.Link href="#/Withdraw/">
+              Withdraw money from your account
+            </Card.Link>
           </Form>
         )}
       </Card.Body>
     </Card>
-    // </currentUserContext.Provider>
   );
 }
 

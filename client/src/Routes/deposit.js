@@ -5,7 +5,6 @@ import axios from 'axios';
 
 const apiUrl = `http://localhost:8080/update`;
 
-
 function Deposit() {
   const currentUser = React.useContext(UserContext); 
   const {name,email,balance,setBalance}=currentUser;
@@ -26,6 +25,7 @@ function Deposit() {
     }
     return true;
   }
+  
   async function updateBalance(newBalance) {
     console.log(apiUrl +"/"+ email + "/" + newBalance);
     var res = await axios.get(

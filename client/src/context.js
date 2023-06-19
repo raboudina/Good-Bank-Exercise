@@ -1,7 +1,6 @@
 import { createContext, useContext, useEffect, useState } from 'react';
 
 const UserContext=createContext({loggedIn:null,setLoggedIn:()=>{},name:null,setName:()=>{},email:null,setEmail:()=>{},balance:null,setBalance:()=>{}});
-//const currentUserContext= () =>useContext(UserContext);
 
 function Context ({children}){
    

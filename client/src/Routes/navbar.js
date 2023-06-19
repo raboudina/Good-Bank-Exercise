@@ -1,7 +1,6 @@
 import React from "react";
 import { Navbar, Nav } from "react-bootstrap";
 import { useContext } from "react";
-import { userContext } from "../userContext";
 import { UserContext } from "../context";
 
 //This function sets status of all links in navbar to inactive
@@ -13,7 +12,6 @@ const resetNavigation = (e) => {
 };
 
 function NavBar() {
-  //const currentUser = useContext(userContext);
   const currentUser = useContext(UserContext);
   const {name} = currentUser;
   console.log("Current user"+JSON.stringify(currentUser));
@@ -26,15 +24,13 @@ function NavBar() {
           width="50px"
           heigh="50px"
         ></img>{" "}
-        BadBank
+        GoodBank
       </Navbar.Brand>
-
       <Navbar.Toggle aria-controls="basic-navbar-nav" />
       <Navbar.Collapse id="basic-navbar-nav">
         <Nav variant="pills">          
           <Nav.Link href="#/deposit/">Deposit</Nav.Link>
           <Nav.Link href="#/withdraw/">Withdraw</Nav.Link>
-          {/* <Nav.Link href="#/alldata/">AllData</Nav.Link> */}
           <Nav.Link href="#/logout/">Logout</Nav.Link>
         </Nav>
       </Navbar.Collapse>
@@ -47,7 +43,6 @@ function NavBar() {
   );
 }
 function NoAuthNavBar() {
-  const currentUser = useContext(userContext);
   return (
     <Navbar bg="dark" variant="dark" expand="lg">
       <Navbar.Brand onClick={resetNavigation} href="#/">
@@ -57,16 +52,14 @@ function NoAuthNavBar() {
           width="50px"
           heigh="50px"
         ></img>{" "}
-        BadBank
+        GoodBank
       </Navbar.Brand>
-
       <Navbar.Toggle aria-controls="basic-navbar-nav" />
       <Navbar.Collapse id="basic-navbar-nav">
         <Nav variant="pills">
           <Nav.Link href="#/login/" className="justify-content-end">
             Login
           </Nav.Link>
-          {/* <Nav.Link href="#/alldata/">AllData</Nav.Link> */}
         </Nav>
       </Navbar.Collapse>
     </Navbar>

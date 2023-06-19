@@ -6,8 +6,6 @@ const e = require('express');
 
 var port = 8080;
 
-// used to serve static files from public directory
-//app.use(express.static('public'));
 app.use(cors());
 
 // create user account

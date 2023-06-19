@@ -1,6 +1,5 @@
 import { useContext } from 'react';
 import {Card} from 'react-bootstrap'
-import { userContext, loggedIn } from "../userContext"; 
 import { UserContext } from '../context';
 
 function Home(){
@@ -11,7 +10,7 @@ function Home(){
   return (  
     <Card >
       <Card.Header className="home" as="h4">       
-      BadBank Home
+      GoodBank Home
       </Card.Header>
       <br/>
       {currentUser.loggedIn?(
@@ -20,6 +19,7 @@ function Home(){
       Welcome to the bank, {currentUser.name}!
       </Card.Body>
       <Card.Body className="home">
+      <Card.Img variant="bottom" src="../imgs/bank3.png" />
       <Card.Link href="#/Deposit/" >Make a deposit to your account</Card.Link><br/>
       <Card.Link href="#/Withdraw/" >Withdraw money from your account</Card.Link>
       </Card.Body>
@@ -28,10 +28,11 @@ function Home(){
       Welcome to the bank!
       </Card.Body>
        <Card.Body className="home">
+       <Card.Img variant="bottom" src="../imgs/bank3.png" />
       <Card.Link href="#/CreateAccount/" >Create a new account</Card.Link><br/>
       <Card.Link href="#/Login/" >Login to an existing account</Card.Link>
       </Card.Body></>)}
-      <Card.Img variant="bottom" src="../imgs/bank3.png" />
+     
       <br/>
      
 

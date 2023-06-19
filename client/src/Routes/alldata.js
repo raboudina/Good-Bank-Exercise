@@ -5,7 +5,6 @@ import axios from 'axios';
 const apiUrl = `http://localhost:8080/users`;
 
 function AllData() {
- // const allUsers = React.useContext(AllUsersContext);
   const [allUsers,setAllUsers] = React.useState({users: []});
   
   async function loadUsers() {

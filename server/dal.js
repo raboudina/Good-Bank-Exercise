@@ -1,17 +1,13 @@
 const MongoClient = require('mongodb').MongoClient;
 const url         = 'mongodb://localhost:27017';
 let db            = null;
-
  
 //connect to mongo
-
 MongoClient.connect(url, {useUnifiedTopology: true}, function(err, client) {
     console.log("Connected successfully to db server");
     // connect to myproject database
     db = client.db('goodbank');
 });
-
-
 
 // create user account
 function create(name, email, password, balance) {
@@ -54,10 +50,8 @@ function update(email, amount){
         const customers = db
             .collection('users')            
             .updateOne(
-            //    .findOneAndReplace(
                 {email: email},
                 { $set: { balance: amount}},
-              // {balance:amount},
                 { returnOriginal: false },
                 function (err, documents) {
                     err ? reject(err) : resolve(documents);

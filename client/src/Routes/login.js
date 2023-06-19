@@ -1,64 +1,50 @@
-import React, { useState } from "react";
-import {Card, Form, Button } from "react-bootstrap";
-import { useContext } from "react";
-import { userContext } from "../userContext";
-
-import axios from "axios";
+import React from "react";
+import { Card, Form, Button } from "react-bootstrap";
+import { useState, useContext } from "react";
 import { UserContext } from "../context";
+import axios from "axios";
 
 const apiUrl = `http://localhost:8080/login`;
 
-
-function Login(){
-  //const loggedIn = useContext(loggedInContext);
-  //const currentUser = useContext(userContext);
+function Login() {
   const currentUser = useContext(UserContext);
-
   const [email, setEmail] = useState("");
-  const [ password, setPassword] = useState("");
+  const [password, setPassword] = useState("");
 
   function emptyFields() {
     if (email && password) return false;
     return true;
-  };
+  }
 
-  function setCurrentUser(user){
-    console.log (user);
+  function setCurrentUser(user) {
     currentUser.setLoggedIn(true);
     currentUser.setName(user.name);
     currentUser.setEmail(user.email);
-    currentUser.setBalance(user.balance);  
-  
+    currentUser.setBalance(user.balance);
   }
 
-  async function login(){
-    let res = await axios.get(
-      apiUrl + "/" + email + "/" + password 
-    );    
+  async function login() {
+    let res = await axios.get(apiUrl + "/" + email + "/" + password);
     return res;
   }
 
   async function handleLogin() {
     let res = login();
-    res.then((resolve)=>{
-      if(resolve.data.success){      
-        setCurrentUser(resolve.data.user);   
-        console.log (currentUser);
-        console.log("login successful")
-        document.location.assign('#/');
-       }
-       else{
-        alert (resolve.data.message);
-       }
+    res.then((resolve) => {
+      if (resolve.data.success) {
+        setCurrentUser(resolve.data.user);
+        document.location.assign("#/");
+      } else {
+        alert(resolve.data.message);
+      }
     });
-
   }
 
   return (
     <Card className="primary">
-    <Card.Header>Login</Card.Header>
-    <Card.Body>
-      <Form>
+      <Card.Header>Login</Card.Header>
+      <Card.Body>
+        <Form>
           <Form.Label>Email address</Form.Label>
           <Form.Control
             type="email"
@@ -69,7 +55,6 @@ function Login(){
             }}
           ></Form.Control>
           <br />
-
           <Form.Label>Password</Form.Label>
           <Form.Control
             type="password"
@@ -80,7 +65,6 @@ function Login(){
             }}
           ></Form.Control>
           <br />
-
           <br />
           <Button
             type="submit"
@@ -88,19 +72,17 @@ function Login(){
             disabled={emptyFields()}
             onClick={(e) => {
               e.preventDefault();
-             handleLogin();
+              handleLogin();
             }}
           >
             Login
-          </Button><br/>
+          </Button>
+          <br />
           <a href="#/CreateAccount/">Create a new account</a>
         </Form>
-    </Card.Body>
-  </Card>
-   
-  )  
+      </Card.Body>
+    </Card>
+  );
 }
 
 export default Login;
-
-
